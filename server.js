@@ -22,7 +22,7 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => console.log('💾 :: MongoDB Connected'))
   .catch((err) => console.log(err))
 
 // Passport middleware
@@ -38,4 +38,4 @@ app.use('/api/posts', posts)
 
 const port = process.env.port || 5000
 
-app.listen(port, () => console.log(`Sever running on port: ${port}`))
+app.listen(port, () => console.log(`🔌 :: Sever running on port: ${port}`))
