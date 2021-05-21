@@ -1,4 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser } from '../../actions/authActions'
+import TextFieldGroup from '../common/TextFieldGroup'
+
+import { useHistory } from 'react-router-dom'
 
 const initialState = {
   email: '',
@@ -7,6 +12,14 @@ const initialState = {
 
 const Login = () => {
   const [form, setForm] = useState(initialState)
+  const errors = useSelector((state) => state.errors)
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  useEffect(() => {
+    if (isAuthenticated) history.push('/dashboard')
+  }, [isAuthenticated])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -15,7 +28,7 @@ const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault()
-    console.log(form)
+    dispatch(loginUser(form))
   }
 
   return (
@@ -28,26 +41,24 @@ const Login = () => {
               Sign in to your DevConnector account
             </p>
             <form onSubmit={onSubmit}>
-              <div className='form-group'>
-                <input
-                  type='email'
-                  className='form-control form-control-lg'
-                  placeholder='Email Address'
-                  name='email'
-                  value={form.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className='form-group'>
-                <input
-                  type='password'
-                  className='form-control form-control-lg'
-                  placeholder='Password'
-                  name='password'
-                  value={form.password}
-                  onChange={handleChange}
-                />
-              </div>
+              <TextFieldGroup
+                name='email'
+                placeholder='Email Address'
+                type='email'
+                value={form.email}
+                onChange={handleChange}
+                error={errors.email}
+              />
+
+              <TextFieldGroup
+                name='password'
+                placeholder='password Address'
+                type='password'
+                value={form.password}
+                onChange={handleChange}
+                error={errors.password}
+              />
+
               <input type='submit' className='btn btn-info btn-block mt-4' />
             </form>
           </div>
