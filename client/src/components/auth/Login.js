@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) history.push('/dashboard')
-  }, [isAuthenticated])
+  }, [isAuthenticated, history])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -49,16 +49,14 @@ const Login = () => {
                 onChange={handleChange}
                 error={errors.email}
               />
-
               <TextFieldGroup
                 name='password'
-                placeholder='password Address'
+                placeholder='Password'
                 type='password'
                 value={form.password}
                 onChange={handleChange}
                 error={errors.password}
               />
-
               <input type='submit' className='btn btn-info btn-block mt-4' />
             </form>
           </div>

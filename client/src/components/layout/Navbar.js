@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../../actions/authActions'
+import { clearCurrentProfile } from '../../actions/profileActions'
 
 function Navbar() {
   const { isAuthenticated, user } = useSelector((state) => state.auth)
@@ -9,11 +10,17 @@ function Navbar() {
 
   function onLogout(e) {
     e.preventDefault()
+    dispatch(clearCurrentProfile())
     dispatch(logoutUser())
   }
 
   const authLinks = (
     <ul className='navbar-nav ml-auto'>
+      <li className='nav-item'>
+        <Link className='nav-link' to='/dashboard'>
+          Dashboard
+        </Link>
+      </li>
       <li className='nav-item'>
         <a className='nav-link' href='#' onClick={onLogout}>
           <img
