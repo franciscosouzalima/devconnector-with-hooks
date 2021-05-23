@@ -96,7 +96,7 @@ const AddEducation = () => {
                   onChange={onCheck}
                   id='current'
                 />
-                <label className='form-check-label' for='current'>
+                <label className='form-check-label' htmlFor='current'>
                   Current
                 </label>
               </div>

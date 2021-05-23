@@ -7,7 +7,7 @@ import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 
-const CreateProfile = () => {
+const EditProfile = () => {
   const [form, setForm] = useState({
     displaySocialInputs: false,
     handle: '',
@@ -33,23 +33,23 @@ const CreateProfile = () => {
 
   useEffect(() => {
     dispatch(getCurrentProfile())
-
     setForm({
       ...form,
-      handle: profile.handle,
-      company: profile.company,
-      website: profile.website,
-      location: profile.location,
-      status: profile.status,
-      githubusername: profile.githubusername,
-      bio: profile.bio,
-      skills: profile.skills.join(','),
-      twitter: profile.social.twitter,
-      facebook: profile.social.facebook,
-      linkedin: profile.social.linkedin,
-      youtube: profile.social.youtube,
-      instagram: profile.social.instagram,
+      handle: profile?.handle,
+      company: profile?.company,
+      website: profile?.website,
+      location: profile?.location,
+      status: profile?.status,
+      githubusername: profile?.githubusername,
+      bio: profile?.bio,
+      skills: profile?.skills.join(','),
+      twitter: profile?.social?.twitter,
+      facebook: profile?.social?.facebook,
+      linkedin: profile?.social?.linkedin,
+      youtube: profile?.social?.youtube,
+      instagram: profile?.social?.instagram,
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function onSubmit(e) {
@@ -236,4 +236,4 @@ const CreateProfile = () => {
   )
 }
 
-export default CreateProfile
+export default EditProfile

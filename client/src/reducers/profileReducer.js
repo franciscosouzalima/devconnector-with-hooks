@@ -1,6 +1,7 @@
 import {
   CLEAR_CURRENT_PROFILE,
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
 } from '../actions/types.js'
 
@@ -10,7 +11,7 @@ const initialState = {
   loading: false,
 }
 
-export default function (state = initialState, action) {
+export default function profileReducer(state = initialState, action) {
   switch (action.type) {
     case PROFILE_LOADING:
       return {
@@ -27,6 +28,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: null,
+      }
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false,
       }
     default:
       return state

@@ -15,11 +15,11 @@ const Education = ({ education }) => {
       <td>{edu.school}</td>
       <td>{edu.degree}</td>
       <td>
-        <Moment format='DD//MM/YYYY'>{edu.from}</Moment> -{' '}
+        <Moment format='DD/MM/YYYY'>{edu.from}</Moment> -{' '}
         {edu.to === null ? (
           ' Now'
         ) : (
-          <Moment format='DD//MM/YYYY'>{edu.to}</Moment>
+          <Moment format='DD/MM/YYYY'>{edu.to}</Moment>
         )}
       </td>
       <td>
@@ -34,12 +34,14 @@ const Education = ({ education }) => {
     <div>
       <h4 className='mb-4'>Education Credentials</h4>
       <table className='table'>
-        <tr>
-          <th>School</th>
-          <th>Degree</th>
-          <th>Years</th>
-          <th></th>
-        </tr>
+        <thead>
+          <tr>
+            <th>School</th>
+            <th>Degree</th>
+            <th>Years</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>{renderEducation}</tbody>
       </table>
     </div>
